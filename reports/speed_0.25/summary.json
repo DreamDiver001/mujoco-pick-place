@@ -1,0 +1,38 @@
+{
+  "trials": 200,
+  "successes": 0,
+  "success_rate": 0.0,
+  "success_rate_95ci": [
+    0.0,
+    0.0188
+  ],
+  "failures": {
+    "grasp_slipped": 143,
+    "grasp_missed": 57
+  },
+  "place_error_mm": {
+    "median": null,
+    "p95": null,
+    "max": null
+  },
+  "perception_error_mm": {
+    "median": 0.46,
+    "p95": 0.85,
+    "max": 1.4
+  },
+  "yaw_error_deg": {
+    "median": 0.22,
+    "p95": 1.44,
+    "max": 3.45
+  },
+  "cycle_time_s": null,
+  "wall_time_per_trial_s": 0.493,
+  "settings": {
+    "seed": 1000,
+    "depth_noise": 0.0,
+    "stock_gripper": false,
+    "gravity_ff": true,
+    "soft_contact": false,
+    "time_scale": 0.25
+  }
+}

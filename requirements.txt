@@ -1,0 +1,6 @@
+mujoco>=4.0,<5
+numpy
+pillow
+pandas
+matplotlib
+pytest

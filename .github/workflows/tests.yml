@@ -1,0 +1,27 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MUJOCO_GL: egl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1 libgles2
+      - uses: actions/cache@v4
+        with:
+          path: third_party
+          key: panda-370c439
+      - run: pip install -r requirements.txt
+      - run: python scripts/fetch_panda.py
+      - run: pytest -q
+      - name: 50-trial evaluation
+        run: |
+          python -m pickplace.evaluate --trials 50 --name ci
+          python -c "import json,sys; s=json.load(open('reports/ci/summary.json')); sys.exit(0 if s['success_rate'] >= 0.95 else 1)"
